@@ -1,0 +1,100 @@
+create table customerdevyani
+(
+customer_id NUMBER(10) generated always as identity not null,
+customer_code varchar2(10) not null,
+customer_name varchar2(30) not null,
+cust_address1 varchar2(100) not null,
+cust_address2 varchar2(100),
+pin number(6) not null,
+email varchar2(100) not null,
+contactno number(20),
+contact_person varchar2(100) not null,
+record_status varchar2(1) not null,
+flag varchar2(1) not null,
+create_date date not null,
+created_by varchar2(30) not null,
+modified_date date,
+modified_by varchar2(30),
+authorized_date date,
+authorized_by varchar2(30),
+primary key(customer_code)
+);
+drop table customerdevyani;
+
+CREATE SEQUENCE seq_customer0101
+MINVALUE 1
+START WITH 1
+INCREMENT BY 1;
+
+CREATE or replace TRIGGER CUST_TRG0101 
+BEFORE INSERT ON customer0101 
+FOR EACH ROW
+WHEN (new.customer_id IS NULL)
+BEGIN
+  SELECT seq_customer0101.NEXTVAL
+  INTO   :new.customer_id
+  FROM   dual;
+END;
+/
+select * from customerdevyani12;
+delete from customerdevyani12;
+commit;
+select * from usertable00;
+
+create table user0123
+(
+userid varchar2(10),
+pwd varchar2(20),
+uname varchar2(20),
+gender varchar2(10),
+primary key(userid)
+);
+select * from user0123;
+create table userbank01
+(
+userid varchar2(10),
+pwd varchar2(20),
+role1 varchar2(20),
+primary key(userid)
+);
+drop table userbank01;
+insert into userbank01 values('devyani','dev123','maker');
+insert into userbank01 values('srijit','sri123','maker');
+create table customer0101
+(
+customer_id NUMBER(10) generated always as identity not null,
+customer_code varchar2(10) not null,
+customer_name varchar2(30) not null,
+cust_address1 varchar2(100) not null,
+cust_address2 varchar2(100),
+pin number(6) not null,
+email varchar2(100) not null,
+contactno number(20),
+contact_person varchar2(100) not null,
+record_status varchar2(1) not null,
+flag varchar2(1) not null,
+create_date date not null,
+created_by varchar2(30) not null,
+modified_date date,
+modified_by varchar2(30),
+authorized_date date,
+authorized_by varchar2(30),
+primary key(customer_code)
+);
+select * from customer0101;
+SELECT * FROM userbank01;
+create table cust121(userid varchar2(50) not null primary key,
+pass varchar2(80) not null,
+check_enable number(10) not null);
+drop table cust121;
+drop table authorities121;
+insert into cust121 values('user01','user01',1);
+insert into cust121 values('user02','user02',1);
+create table authorities121(userid varchar2(50) not null,user_role varchar2(60) not null,constraint user_authorities_fk foreign key(userid) references cust121(userid));
+insert into authorities121 values('user01','ROLE_MAKER');
+insert into authorities121 values('user02','ROLE_MAKER');
+insert into authorities121 values('dev','ROLE_MAKER');
+COMMIT;
+select * from cust0;
+select * from cust121;
+
